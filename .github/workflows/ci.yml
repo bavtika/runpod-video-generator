@@ -1,0 +1,57 @@
+name: ci
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install ruff
+
+      - name: Secret hygiene scan
+        run: python scripts/check_no_secrets.py
+
+      - name: Lint (ruff)
+        run: ruff check . --select E9,F63,F7,F82 --ignore E501
+
+      - name: Compile all modules
+        run: python -m compileall -q .
+
+  docker-app:
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build studio image
+        run: docker build -t ai-content-studio:ci .
+
+  docker-worker:
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate worker context
+        run: |
+          test -f runpod-worker/handler.py
+          test -f runpod-worker/Dockerfile
+          test -f runpod-worker/workflow_api.json
+          test -f runpod-worker/requirements.txt
+
+      - name: Syntax-check worker handler
+        run: python -m py_compile runpod-worker/handler.py

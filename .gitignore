@@ -1,0 +1,55 @@
+# Secrets & local env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.envrc
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Generated media & working dirs (keep folder structure via .gitkeep)
+outputs/*
+!outputs/.gitkeep
+temp_assets/*
+!temp_assets/.gitkeep
+music/*
+!music/.gitkeep
+!music/README.md
+
+# Test / local artifacts
+*.mp4
+*.mp3
+*.wav
+*.png
+*.jpg
+*.jpeg
+!docs/**/*.png
+
+# Docker
+*.log
+
+# Coverage / tooling
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/

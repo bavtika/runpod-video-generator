@@ -1,0 +1,31 @@
+{
+  "_comment": "Placeholder ComfyUI API workflow. Export your real LTX2 graph from ComfyUI (Save (API Format)) and replace this file as workflow_api.json before building the worker image. Node IDs below match handler.py expectations.",
+  "98": {
+    "inputs": { "image": "input.png" },
+    "class_type": "LoadImage"
+  },
+  "92:3": {
+    "inputs": { "text": "positive prompt" },
+    "class_type": "CLIPTextEncode"
+  },
+  "92:4": {
+    "inputs": { "text": "negative prompt" },
+    "class_type": "CLIPTextEncode"
+  },
+  "92:62": {
+    "inputs": { "value": 145 },
+    "class_type": "PrimitiveInteger"
+  },
+  "92:11": {
+    "inputs": { "noise_seed": 0 },
+    "class_type": "RandomNoise"
+  },
+  "92:67": {
+    "inputs": { "noise_seed": 1 },
+    "class_type": "RandomNoise"
+  },
+  "75": {
+    "inputs": { "filename_prefix": "video_out" },
+    "class_type": "SaveVideo"
+  }
+}

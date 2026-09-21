@@ -1,0 +1,11 @@
+openai>=1.0.0
+requests
+moviepy>=1.0.3
+Pillow>=9.0.0
+edge-tts
+boto3
+websocket-client
+streamlit>=1.32.0
+python-dotenv
+numpy
+# System dependency: ffmpeg must be on PATH (or use the provided Dockerfile)

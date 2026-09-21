@@ -1,0 +1,16 @@
+# Ignore large / local artifacts when building the app image
+.git
+.venv
+venv
+__pycache__
+*.pyc
+.env
+.env.*
+!.env.example
+outputs
+temp_assets
+music/*.mp3
+music/*.wav
+*.mp4
+.idea
+.vscode
