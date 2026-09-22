@@ -1,12 +1,10 @@
 # AI Video Studio
 
-**MLOps / DevOps portfolio project** — end-to-end pipeline that turns a keyword into a vertical short-form video using serverless GPU workers, object storage, and a containerized Streamlit control plane.
+End-to-end pipeline that turns a keyword into a vertical short-form video using serverless GPU workers, object storage, and a containerized Streamlit control plane.
 
 [![CI](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)](.github/workflows/ci.yml)
 [![Docker](https://img.shields.io/badge/Docker-compose%20ready-2496ED?logo=docker&logoColor=white)](docker-compose.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
-> Built to demonstrate: **serverless GPU workloads**, **S3-compatible storage**, **Docker packaging**, **CI hygiene (secret scanning)**, and a **multi-stage media pipeline**.
 
 ---
 
@@ -34,17 +32,6 @@
 | Object storage | Artifact download | RunPod S3 (`boto3`) |
 | Media | TTS, montage, post-process | edge-tts, MoviePy, FFmpeg |
 | CI | Lint, compile, secret scan, image build | GitHub Actions |
-
----
-
-## What this shows on a CV
-
-- **Serverless GPU**: custom RunPod worker (`runpod-worker/`) with warmup, WebSocket job wait, base64 artifact return
-- **Containers**: app `Dockerfile` (ffmpeg + Streamlit healthcheck) and worker `Dockerfile`
-- **Compose**: local studio stack with volume mounts for `outputs/` / `music/`
-- **Secrets-as-config**: no keys in source; `.env.example` + CI secret-pattern scanner
-- **Observability hooks**: stage timing report in CLI; worker progress / timeout logging
-- **Idempotent workspace layout**: generated media gitignored; reproducible via env + compose
 
 ---
 
